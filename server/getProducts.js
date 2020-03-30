@@ -7,13 +7,16 @@ module.exports = {
             for (const key in req.query) {
                 if (typeof product[key] === 'number') {
                     if (product[key] !== +req.query[key]) {
-
                         include = false
+                        console.log(product[key], ' does not equal 1.51')
                     }
-                } else if (!product[key].includes(req.query[key])) {
-                    include = false
-
+                    continue
                 }
+                if (product[key].includes(req.query[key])) {
+                    console.log(product[key], product['price'])
+                    include = false
+                }
+                console.log(include)
             }
             return include
         })
